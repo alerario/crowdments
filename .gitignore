@@ -1,0 +1,7 @@
+### Java ###
+# Arquivos compilados
+*.class
+### backup ###
+# Arquivos com ~ no nome
+*~
+~*
