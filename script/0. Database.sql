@@ -36,6 +36,7 @@ CREATE TABLE Question(
     FOREIGN KEY (questionary) REFERENCES Questionary(id)
 );
 
+-- alterar
 CREATE TABLE Anwser(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     anw VARCHAR(160),
@@ -47,7 +48,7 @@ CREATE TABLE Anwser(
 
     CONSTRAINT nextQuestion
     FOREIGN KEY (nextQuestion) REFERENCES Question(id)
-)
+);
 
 CREATE TABLE TypeProfile(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -75,10 +76,4 @@ CREATE TABLE QuestionaryProfile(
 
     CONSTRAINT questionaryAllowed
     FOREIGN KEY (questionary) REFERENCES Questionary(id)
-);
-
-CREATE TABLE StatsQuestionaryProfile(
-    profile INTEGER,
-    questionary INTEGER,
-
 );
