@@ -27,7 +27,7 @@ public abstract class FacadeCrud<T> {
     //salvar e persistir o objeto
     public void persist(T entity) {
     	try{
-    		getEntityManager().getTransaction().begin();
+    	    getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
             getEntityManager().getTransaction().commit();
     	}catch(Exception ex){
@@ -37,7 +37,7 @@ public abstract class FacadeCrud<T> {
 
     public void merge(T entity) {
     	try{
-    		getEntityManager().getTransaction().begin();
+    	    getEntityManager().getTransaction().begin();
             getEntityManager().merge(entity);
             getEntityManager().getTransaction().commit();
     	}catch(Exception ex){
@@ -47,7 +47,7 @@ public abstract class FacadeCrud<T> {
 
     public void remove(T entity) {
     	try{
-    		getEntityManager().getTransaction().begin();
+    	    getEntityManager().getTransaction().begin();
             getEntityManager().remove(getEntityManager().merge(entity));
             getEntityManager().getTransaction().commit();
     	}

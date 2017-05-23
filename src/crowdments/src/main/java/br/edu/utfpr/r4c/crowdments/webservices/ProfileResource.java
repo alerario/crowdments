@@ -18,6 +18,7 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 public class ProfileResource extends FacadeWebservice<Profile>{
     private ProfileCrud cr;
+    
                    
     public ProfileResource(){
         super(Profile.class);

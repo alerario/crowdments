@@ -69,8 +69,8 @@
                 </dependency>
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-moxy</artifactId>
-                    <version>2.26-b03</version>
+                    <artifactId>jersey-media-json-jackson</artifactId>
+                    <version>2.25.1</version>
                 </dependency>
                 
     </dependencies>
