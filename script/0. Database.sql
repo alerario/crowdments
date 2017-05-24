@@ -90,10 +90,15 @@ CREATE TABLE IF NOT EXISTS Profile (
 
 CREATE TABLE IF NOT EXISTS Anwser (
   id SERIAL PRIMARY KEY,
-  awnser VARCHAR(45) NULL,
-  score INT NULL,
-  question SERIAL NOT NULL,
-  profile SERIAL NOT NULL,
+  anwser VARCHAR(45) NULL,
+  score INT NULL 
+);
+
+CREATE TABLE AnwserProfileQuestion(
+	profile SERIAL,
+	question SERIAL,
+	anwser SERIAL,
+
   CONSTRAINT Awnser_has_Question
     FOREIGN KEY (question)
     REFERENCES Question (id)
@@ -103,7 +108,12 @@ CREATE TABLE IF NOT EXISTS Anwser (
     FOREIGN KEY (profile)
     REFERENCES Profile (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION  
+    ON UPDATE NO ACTION,
+  CONSTRAINT Awnser
+    FOREIGN KEY (awnser)
+    REFERENCES Anwser(id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION    
 );
 
 -- -----------------------------------------------------
@@ -207,3 +217,23 @@ CREATE TABLE IF NOT EXISTS Anwser_has_TagPattern (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
+
+INSERT INTO public.questionary
+	(id, name, start, ends, briefing, slug, active)
+VALUES 
+	(1, 'Qual o celular?', '2017-05-23', '2017-05-31', 'Qual o celular?', 'qual-celular', true);
+
+INSERT INTO public.question
+	(id, question, questionary)
+	VALUES (1, 'Como seria o celular ideal para você?', 1);
+
+INSERT INTO public.typeprofile
+	(id, name, active, description, level)
+VALUES
+	(1, 'Admin', true, 'admin', 1),
+	(2, 'Crowd', true, 'crowd', 2);
+
+INSERT INTO public.profile
+	(id, name, mail, typeprofile, city, state, sex, studies, position)
+VALUES
+	(1, 'ricardo', 'ricardo', 1, 'Assis', 'SP', 'M', 'Superior', 'Analista');

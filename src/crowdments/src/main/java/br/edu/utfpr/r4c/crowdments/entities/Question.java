@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Question.findByQuestion", query = "SELECT q FROM Question q WHERE q.question = :question")})
 public class Question implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private Collection<Anwserprofilequestion> anwserprofilequestionCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,8 +52,6 @@ public class Question implements Serializable {
     @JoinColumn(name = "questionary", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Questionary questionary;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-    private Collection<Anwser> anwserCollection;
 
     public Question() {
     }
@@ -83,15 +84,6 @@ public class Question implements Serializable {
         this.questionary = questionary;
     }
 
-    @XmlTransient
-    public Collection<Anwser> getAnwserCollection() {
-        return anwserCollection;
-    }
-
-    public void setAnwserCollection(Collection<Anwser> anwserCollection) {
-        this.anwserCollection = anwserCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -115,6 +107,15 @@ public class Question implements Serializable {
     @Override
     public String toString() {
         return "br.edu.utfpr.r4c.crowdments.entities.Question[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Anwserprofilequestion> getAnwserprofilequestionCollection() {
+        return anwserprofilequestionCollection;
+    }
+
+    public void setAnwserprofilequestionCollection(Collection<Anwserprofilequestion> anwserprofilequestionCollection) {
+        this.anwserprofilequestionCollection = anwserprofilequestionCollection;
     }
     
 }

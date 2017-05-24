@@ -12,12 +12,21 @@ angular.module("Crowd").
                 $scope.awnsers = {};
                 $scope.estadoSel = '';
                 $scope.typeProfile = {'id': 2};
+                $scope.quest = {};
 
                 function obterEstados() {
                     $http.get("js/estados-cidades.json").success(
                             function (response) {
                                 $scope.estados = response.estados;
                                 $scope.cidades = $scope.estados[0].cidades;
+                            }
+                    );
+                }
+
+                function obterQuestao() {
+                    $http.get("v1/question/1").success(
+                            function (response) {
+                                $scope.quest = response;
                             }
                     );
                 }
@@ -32,15 +41,15 @@ angular.module("Crowd").
                 });
 
                 $('#submitOne').click(function () {
-                    $scope.people.nome = $('#name').val();
-                    $scope.people.email = $('#email').val();
+                    $scope.people.name = $('#name').val();
+                    $scope.people.mail = $('#email').val();
                     $scope.people.state = $('#state').val();
-                    $scope.people.sex = $('#sex').val();
+                    $scope.people.sex = $('input[name=sex]:checked').val();
                     $scope.people.position = $('#position').val();
                     $scope.people.city = $('#city').val();
-                    $scope.people.age = $('#age').val();
+                    $scope.people.age = $('#agerange').val();
                     $scope.people.studies = $('#studies').val();
-                    $scope.people.typeProfile = $scope.typeProfile;
+                    $scope.people.typeprofile = $scope.typeProfile;
 
                     if ($scope.people.nome != "" &&
                             $scope.people.email != "" &&
@@ -51,15 +60,49 @@ angular.module("Crowd").
                         $("#one").hide();
                         $("#two").show();
 
+                        var id = 0;
+                        $http({
+                            url: 'v1/profile',
+                            method: "POST",
+                            data: $scope.people
+                        }).success(function (data, status, headers, config) {
+                            $scope.people = data.object; 
+                        }).error(function (data, status, headers, config) {
+                            $scope.status = status;
+                        });
+                        
+                        console.log($scope.people);
+                        obterQuestao();
                     }
-                    console.log($scope.people);
                 });
-                
+
                 $('#submitAws').click(function () {
                     var count = -1;
-                    var values = $("input[id='awnser[]']").map(function(){   
-                        count ++;
-                        return {'id': count, 'awnser': $(this).val()};                        
+                    var values = $("input[id='awnser[]']").map(function () {
+                        count++;
+
+                        var aw = {'anwser': $(this).val(),
+                            'score': 1};
+                        
+                        var awnser = {
+                            'anwser': aw,
+                            'profile': $scope.people,
+                            'question': $scope.quest};
+
+                        $http({
+                            url: 'v1/anwser',
+                            method: "POST",
+                            data: awnser
+                        })
+                                .then(function (response) {
+                                    $("#two").hide();
+                                    $("#three").show();
+                                },
+                                        function (response) { // optional
+                                            console.log(response);
+                                        });
+
+                        return awnser;
                     }).get();
                     console.log(values);
                 });
@@ -82,8 +125,8 @@ angular.module("Crowd").
                     }
                     //Fazendo com que cada uma escreva seu name
                     /*wrapper.find("input:text").each(function () {
-                        $(this).val($(this).attr('name'))
-                    }); */
+                     $(this).val($(this).attr('name'))
+                     }); */
                 });
 
                 $(wrapper).on("click", ".removeAws", function (e) { //user click on remove text

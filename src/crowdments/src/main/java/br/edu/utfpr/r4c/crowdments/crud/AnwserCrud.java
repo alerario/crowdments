@@ -6,7 +6,6 @@
 package br.edu.utfpr.r4c.crowdments.crud;
 
 import br.edu.utfpr.r4c.crowdments.entities.Anwser;
-import br.edu.utfpr.r4c.crowdments.entities.Profile;
 import br.edu.utfpr.r4c.crowdments.util.DefaultParams;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;

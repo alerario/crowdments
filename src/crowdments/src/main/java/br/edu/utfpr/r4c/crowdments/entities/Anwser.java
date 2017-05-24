@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Anwser.findAll", query = "SELECT a FROM Anwser a")
     , @NamedQuery(name = "Anwser.findById", query = "SELECT a FROM Anwser a WHERE a.id = :id")
-    , @NamedQuery(name = "Anwser.findByAwnser", query = "SELECT a FROM Anwser a WHERE a.awnser = :awnser")
+    , @NamedQuery(name = "Anwser.findByAwnser", query = "SELECT a FROM Anwser a WHERE a.anwser = :anwser")
     , @NamedQuery(name = "Anwser.findByScore", query = "SELECT a FROM Anwser a WHERE a.score = :score")})
 public class Anwser implements Serializable {
 
@@ -47,8 +46,8 @@ public class Anwser implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
-    @Column(name = "awnser")
-    private String awnser;
+    @Column(name = "anwser")
+    private String anwser;
     @Column(name = "score")
     private Integer score;
     @JoinTable(name = "anwser_has_tagpattern", joinColumns = {
@@ -56,14 +55,10 @@ public class Anwser implements Serializable {
         @JoinColumn(name = "tagpattern", referencedColumnName = "id")})
     @ManyToMany
     private Collection<Tagpattern> tagpatternCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "anwser")
+    private Collection<Anwserprofilequestion> anwserprofilequestionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "awnser")
     private Collection<Task> taskCollection;
-    @JoinColumn(name = "profile", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Profile profile;
-    @JoinColumn(name = "question", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Question question;
 
     public Anwser() {
     }
@@ -80,12 +75,12 @@ public class Anwser implements Serializable {
         this.id = id;
     }
 
-    public String getAwnser() {
-        return awnser;
+    public String getAnwser() {
+        return anwser;
     }
 
-    public void setAwnser(String awnser) {
-        this.awnser = awnser;
+    public void setAnwser(String anwser) {
+        this.anwser = anwser;
     }
 
     public Integer getScore() {
@@ -106,28 +101,21 @@ public class Anwser implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Anwserprofilequestion> getAnwserprofilequestionCollection() {
+        return anwserprofilequestionCollection;
+    }
+
+    public void setAnwserprofilequestionCollection(Collection<Anwserprofilequestion> anwserprofilequestionCollection) {
+        this.anwserprofilequestionCollection = anwserprofilequestionCollection;
+    }
+
+    @XmlTransient
     public Collection<Task> getTaskCollection() {
         return taskCollection;
     }
 
     public void setTaskCollection(Collection<Task> taskCollection) {
         this.taskCollection = taskCollection;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     @Override

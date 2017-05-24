@@ -58,12 +58,14 @@ public abstract class FacadeCrud<T> {
 
     //encontrar por objeto
     public T find(Object id) {
+        getEntityManager().getTransaction().begin();
         return getEntityManager().find(entityClass, id);
     }
     
     //encontrar por identificador
     public T byId(Integer id) {
         try {
+            getEntityManager().getTransaction().begin();
             return (T) getEntityManager().createNamedQuery(this.entityClass.getSimpleName().toString() +".findById").setParameter("id", id).getSingleResult();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -74,7 +76,8 @@ public abstract class FacadeCrud<T> {
     //obter todos entity
     public List<T> getAll() {
         try{
-	        return getEntityManager().createNamedQuery(this.entityClass.getSimpleName().toString() +".findAll").getResultList();
+            getEntityManager().getTransaction().begin();
+	    return getEntityManager().createNamedQuery(this.entityClass.getSimpleName().toString() +".findAll").getResultList();
         }catch(Exception e){
         	getEntityManager().getTransaction().rollback();
             System.out.println(e.getMessage());

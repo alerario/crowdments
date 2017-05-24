@@ -94,13 +94,7 @@
                 <button id="submitOne" type="submit" class="btn btn-primary">Próxima página</button>
             </div>
             <div id="two">
-                <h1>Você conhece sobre xxx?</h1>
-                <button id="submitTwo" type="submit" class="btn btn-primary">Próxima página</button>
-            </div>
-            
-            <div id="three">
-                <h1>Responda a pergunta a seguir: </h1>
-                <h3>Responda a pergunta a seguir: </h3>
+                <h1>{{ quest.question }}</h1>
                 <div class="input_fields_wrap">
                     <button class="addMoreAwnswer btn btn-success btAws">+</button>
                     <input class="form-control options inputAw" type="text" id="awnser[]" name="awnser[]">                    
@@ -109,7 +103,13 @@
                 <div class="col-sm-12 enviar">
                     <hr>
                     <button id="submitAws" type="submit" class="btn btn-primary">Enviar seu crowd!</button>
-                </div>                
+                </div>
+            </div>
+            
+            <div id="three">
+                <h1>Obrigado!</h1> 
+                <h4>Agradecemos por sua opinião, que é muito importante para nós! <br>
+                    Esperamos que em breve ter novos questionários para que você responda</h4>  
             </div>
 
         </article>

@@ -42,7 +42,6 @@ public class Typeprofile implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
-    
     private Integer id;
     @Size(max = 45)
     @Column(name = "name")

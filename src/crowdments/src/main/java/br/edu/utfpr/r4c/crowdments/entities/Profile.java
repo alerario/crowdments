@@ -5,7 +5,6 @@
  */
 package br.edu.utfpr.r4c.crowdments.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -33,7 +32,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "profile")
 @XmlRootElement
-@JsonIgnoreProperties({"parent"}) 
 @NamedQueries({
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p")
     , @NamedQuery(name = "Profile.findById", query = "SELECT p FROM Profile p WHERE p.id = :id")
@@ -46,6 +44,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Profile.findByStudies", query = "SELECT p FROM Profile p WHERE p.studies = :studies")
     , @NamedQuery(name = "Profile.findByPosition", query = "SELECT p FROM Profile p WHERE p.position = :position")})
 public class Profile implements Serializable {
+
+    @Basic(optional = false)
+    @Column(name = "age")
+    private int age;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
+    private Collection<Anwserprofilequestion> anwserprofilequestionCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -94,8 +99,6 @@ public class Profile implements Serializable {
     @JoinColumn(name = "typeprofile", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Typeprofile typeprofile;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
-    private Collection<Anwser> anwserCollection;
 
     public Profile() {
     }
@@ -195,15 +198,6 @@ public class Profile implements Serializable {
         this.typeprofile = typeprofile;
     }
 
-    @XmlTransient
-    public Collection<Anwser> getAnwserCollection() {
-        return anwserCollection;
-    }
-
-    public void setAnwserCollection(Collection<Anwser> anwserCollection) {
-        this.anwserCollection = anwserCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -227,6 +221,23 @@ public class Profile implements Serializable {
     @Override
     public String toString() {
         return "br.edu.utfpr.r4c.crowdments.entities.Profile[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Anwserprofilequestion> getAnwserprofilequestionCollection() {
+        return anwserprofilequestionCollection;
+    }
+
+    public void setAnwserprofilequestionCollection(Collection<Anwserprofilequestion> anwserprofilequestionCollection) {
+        this.anwserprofilequestionCollection = anwserprofilequestionCollection;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
     
 }
