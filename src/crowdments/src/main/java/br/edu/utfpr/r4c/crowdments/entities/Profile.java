@@ -58,14 +58,14 @@ public class Profile implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 65)
     @Column(name = "mail")
     private String mail;
     @Size(max = 45)
@@ -73,7 +73,7 @@ public class Profile implements Serializable {
     private String password;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "city")
     private String city;
     @Basic(optional = false)
@@ -88,12 +88,12 @@ public class Profile implements Serializable {
     private String sex;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "studies")
     private String studies;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "position")
     private String position;
     @JoinColumn(name = "typeprofile", referencedColumnName = "id")

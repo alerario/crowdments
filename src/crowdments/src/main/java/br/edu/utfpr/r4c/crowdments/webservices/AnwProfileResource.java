@@ -7,6 +7,9 @@ package br.edu.utfpr.r4c.crowdments.webservices;
 
 import br.edu.utfpr.r4c.crowdments.crud.AnwProfileCurd;
 import br.edu.utfpr.r4c.crowdments.entities.Anwserprofilequestion;
+import java.sql.SQLException;
+import java.util.List;
+import javax.naming.NamingException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -23,5 +26,10 @@ public class AnwProfileResource extends FacadeWebservice<Anwserprofilequestion>{
         super(Anwserprofilequestion.class);
         cr = new AnwProfileCurd();
         this.setManager(cr);
-    }       
+    }   
+
+    @Override
+    public List<Anwserprofilequestion> getList() throws SQLException, NamingException, NullPointerException{ 
+        return null;
+    }
 }

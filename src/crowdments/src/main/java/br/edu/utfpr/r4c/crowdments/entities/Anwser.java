@@ -45,7 +45,7 @@ public class Anwser implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Size(max = 60)
     @Column(name = "anwser")
     private String anwser;
     @Column(name = "score")

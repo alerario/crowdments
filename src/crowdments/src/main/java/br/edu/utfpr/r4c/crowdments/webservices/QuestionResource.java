@@ -7,6 +7,9 @@ package br.edu.utfpr.r4c.crowdments.webservices;
 
 import br.edu.utfpr.r4c.crowdments.crud.QuestionCrud;
 import br.edu.utfpr.r4c.crowdments.entities.Question;
+import java.sql.SQLException;
+import java.util.List;
+import javax.naming.NamingException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -23,6 +26,11 @@ public class QuestionResource extends FacadeWebservice<Question>{
         super(Question.class);
         cr = new QuestionCrud();
         this.setManager(cr);
-    }       
+    }   
+
+    @Override
+    public List<Question> getList() throws SQLException, NamingException, NullPointerException{ 
+        return null;
+    }
 }
 

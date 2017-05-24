@@ -8,9 +8,11 @@
         <header>
             <jsp:include page="header.jsp"></jsp:include>
         </header>
-        <article>
-            <h1>Crowdsourcing.</h1>
-            <p>A colaboração da multidões para</p>
+        <article id="home">
+            <h1 class="crowdhead">Crowdsourcing.</h1>
+            <p class="crowdhead">A colaboração de multidões para formar inteligência coletiva. Descubra mais aqui.</p>
+            <hr>
+            <a href="crowdsourcing.jsp" class="btn btn-success conhecer">Conheça mais aqui</a>
         </article>
     </body>    
     <script src="js/bootstrap.min.js"></script>

@@ -1,7 +1,24 @@
 body{
-    padding: 1%;
+    padding: 0% 2vw 0% 2vw;
+    background-color: #f3f3f3;
+}
+#home{
+    height: 100%;
+    min-height: 200px;
+    background-color: green;
+    opacity: 0.7;
+    padding: 3%;
 }
 
+.crowdhead{
+    color: #fff;
+}
+
+.conhecer{
+    opacity: 1;
+    background-color: #113804;
+    border-color: #3fb618;
+}
 .navbar{
     opacity: 0.7;
 }
@@ -33,10 +50,4 @@ body{
    padding-left: 0px; 
    margin: 0px auto;
    text-align: center;
-}
-
-#responda{
-    width: 70%;
-    margin: 0px auto;
-    text-align: center;
 }

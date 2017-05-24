@@ -5,6 +5,7 @@
  */
 package br.edu.utfpr.r4c.crowdments.crud;
 
+import br.edu.utfpr.r4c.crowdments.webservices.ReturnStatus;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -25,34 +26,48 @@ public abstract class FacadeCrud<T> {
     protected abstract EntityManager getEntityManager();
 
     //salvar e persistir o objeto
-    public void persist(T entity) {
+    public T persist(T entity) {
     	try{
     	    getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
             getEntityManager().getTransaction().commit();
+            
+            return entity;
     	}catch(Exception ex){
     		System.out.println("A persistência de " + entity.getClass().getSimpleName() + " falhou! Rollback em ação.");
-    	}        
+                return null;
+        }         
     }
 
-    public void merge(T entity) {
+    public T merge(T entity) {
     	try{
     	    getEntityManager().getTransaction().begin();
             getEntityManager().merge(entity);
             getEntityManager().getTransaction().commit();
+            
+            return entity;
     	}catch(Exception ex){
     		System.out.println("A persistência de " + entity.getClass().getSimpleName() + " falhou! Rollback em ação.");
+                return null;
     	}                
     }
 
-    public void remove(T entity) {
+    public ReturnStatus remove(T entity) {
     	try{
     	    getEntityManager().getTransaction().begin();
             getEntityManager().remove(getEntityManager().merge(entity));
             getEntityManager().getTransaction().commit();
+            
+            ReturnStatus rs = new ReturnStatus();
+            rs.setCod(200);
+            rs.setObject(entity);
+            rs.setInfo(entity.getClass().getName() + " was removed");
+            
+            return rs;
     	}
     	catch(Exception ex){
     		System.out.println("A persistência de " + entity.getClass().getSimpleName() + " falhou! Rollback em ação.");
+                return null;
     	}            
     }
 

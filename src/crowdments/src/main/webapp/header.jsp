@@ -12,8 +12,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="o-que-crowdsourcing.jsp">O que é crowdsourcing</a></li>
-                <li><a href="o-projeto.jsp">O projeto</a></li>
+                <li><a href="crowdsourcing.jsp">Crowdsourcing</a></li>
                 <li><a href="responda.jsp">Responder pesquisa</a></li>
                 <li><a href="https://ricardoalvim.github.io/">Contato</a></li>
             </ul>                    

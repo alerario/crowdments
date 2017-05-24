@@ -31,6 +31,8 @@ angular.module("Crowd").
                     );
                 }
 
+                
+
                 $('#state').change(function () {
                     $scope.estadoSel = $(this).val();
                     $cidades = $scope.estados[$scope.estadoSel].cidades;
@@ -41,7 +43,7 @@ angular.module("Crowd").
                 });
 
                 $('#submitOne').click(function () {
-                    $scope.people.name = $('#name').val();
+                    //$scope.people.name = $('#name').val();
                     $scope.people.mail = $('#email').val();
                     $scope.people.state = $('#state').val();
                     $scope.people.sex = $('input[name=sex]:checked').val();
@@ -51,10 +53,11 @@ angular.module("Crowd").
                     $scope.people.studies = $('#studies').val();
                     $scope.people.typeprofile = $scope.typeProfile;
 
-                    if ($scope.people.nome != "" &&
-                            $scope.people.email != "" &&
+                    if (    $scope.people.email != "" &&
                             $scope.people.position != "" &&
+                            $scope.people.age != "Escolha uma faixa de idade válida" &&
                             $scope.people.state != "Escolha um estado válido" &&
+                            $scope.people.studies != "Escolha uma opção" && 
                             $scope.people.city != "Escolha uma cidade válida"
                             ) {
                         $("#one").hide();
@@ -66,13 +69,16 @@ angular.module("Crowd").
                             method: "POST",
                             data: $scope.people
                         }).success(function (data, status, headers, config) {
-                            $scope.people = data.object; 
+                            $scope.people = data.object;
                         }).error(function (data, status, headers, config) {
                             $scope.status = status;
                         });
-                        
+
                         console.log($scope.people);
                         obterQuestao();
+                    } else {
+                        $('#verifique').modal('toggle');
+                        $('#verifique').show();
                     }
                 });
 
@@ -83,7 +89,7 @@ angular.module("Crowd").
 
                         var aw = {'anwser': $(this).val(),
                             'score': 1};
-                        
+
                         var awnser = {
                             'anwser': aw,
                             'profile': $scope.people,
