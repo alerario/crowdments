@@ -225,7 +225,7 @@ VALUES
 
 INSERT INTO public.question
 	(id, question, questionary)
-	VALUES (1, 'Como seria o celular ideal para você?', 1);
+	VALUES (1, 'Como seria o celular ideal para vocÃª?', 1);
 
 INSERT INTO public.typeprofile
 	(id, name, active, description, level)
