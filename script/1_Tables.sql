@@ -1,16 +1,3 @@
--- ------------------------------------------
--- Software Requistion Tool for Crowdsourcing
--- ------------------------------------------
--- Author: Ricardo Carreiro Alvim
--- WARNING: THIS PROJECT IS CONFIDENTIAL
--- PUBLISH, REDISTRIBUITE OR REUSE OF PART OR ALL 
--- CAN BE 
-
-CREATE DATABASE r4c ENCODING = 'UTF8';
---\c r4c;
-----------------
--- Questionary -
-----------------
 CREATE TABLE IF NOT EXISTS Questionary (
   id SERIAL PRIMARY KEY,
   name VARCHAR(45) NULL,
@@ -20,9 +7,6 @@ CREATE TABLE IF NOT EXISTS Questionary (
   slug VARCHAR(45) NULL,
   active BOOL NULL);
 
--------------
--- Project --
--------------
 CREATE TABLE IF NOT EXISTS Project (
   id SERIAL PRIMARY KEY,
   name VARCHAR(45) NULL,
@@ -38,10 +22,6 @@ CREATE TABLE IF NOT EXISTS Project (
     ON UPDATE NO ACTION
 );
 
-
--- -----------------------------------------------------
--- Table Question
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Question (
   id SERIAL PRIMARY KEY,
   question VARCHAR(45) NULL,
@@ -53,9 +33,6 @@ CREATE TABLE IF NOT EXISTS Question (
     ON UPDATE NO ACTION
 );
 
--- -----------------------------------------------------
--- Table TypeProfile
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS TypeProfile (
   id INT NOT NULL,
   name VARCHAR(45) NULL,
@@ -65,10 +42,6 @@ CREATE TABLE IF NOT EXISTS TypeProfile (
   PRIMARY KEY (id)
 );
 
-
--- -----------------------------------------------------
--- Table Profile
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Profile (
   id SERIAL PRIMARY KEY,
   name VARCHAR(45) NOT NULL,
@@ -86,7 +59,6 @@ CREATE TABLE IF NOT EXISTS Profile (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
-
 
 CREATE TABLE IF NOT EXISTS Anwser (
   id SERIAL PRIMARY KEY,
@@ -116,9 +88,6 @@ CREATE TABLE AnwserProfileQuestion(
     ON UPDATE NO ACTION    
 );
 
--- -----------------------------------------------------
--- Table QuestionaryProfile
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS QuestionaryProfile (
   level INT NOT NULL,
   profile SERIAL NOT NULL,
@@ -135,19 +104,11 @@ CREATE TABLE IF NOT EXISTS QuestionaryProfile (
     ON UPDATE NO ACTION
 );
 
-
--- -----------------------------------------------------
--- Table Statues
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Statues (
   id SERIAL PRIMARY KEY,
   state VARCHAR(45) NOT NULL
 );
 
-
--- -----------------------------------------------------
--- Table Task
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Task (
   id SERIAL PRIMARY KEY,
   description VARCHAR(45) NOT NULL,
@@ -168,10 +129,6 @@ CREATE TABLE IF NOT EXISTS Task (
     ON UPDATE NO ACTION
 );
 
-
--- -----------------------------------------------------
--- Table Task_has_Project
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Task_has_Project (
   task SERIAL NOT NULL,
   project SERIAL NOT NULL,
@@ -189,19 +146,11 @@ CREATE TABLE IF NOT EXISTS Task_has_Project (
     ON UPDATE NO ACTION
 );
 
-
--- -----------------------------------------------------
--- Table TagPattern
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS TagPattern (
   id SERIAL PRIMARY KEY,
   description VARCHAR(45) NOT NULL
 );
 
-
--- -----------------------------------------------------
--- Table Anwser_has_TagPattern
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Anwser_has_TagPattern (
   anwser INT NOT NULL,
   tagPattern INT NOT NULL,
@@ -217,23 +166,3 @@ CREATE TABLE IF NOT EXISTS Anwser_has_TagPattern (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
-
-INSERT INTO public.questionary
-	(id, name, start, ends, briefing, slug, active)
-VALUES 
-	(1, 'Qual o celular?', '2017-05-23', '2017-05-31', 'Qual o celular?', 'qual-celular', true);
-
-INSERT INTO public.question
-	(id, question, questionary)
-	VALUES (1, 'Como seria o celular ideal para você?', 1);
-
-INSERT INTO public.typeprofile
-	(id, name, active, description, level)
-VALUES
-	(1, 'Admin', true, 'admin', 1),
-	(2, 'Crowd', true, 'crowd', 2);
-
-INSERT INTO public.profile
-	(id, name, mail, typeprofile, city, state, sex, studies, position)
-VALUES
-	(1, 'ricardo', 'ricardo', 1, 'Assis', 'SP', 'M', 'Superior', 'Analista');
