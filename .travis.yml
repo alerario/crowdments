@@ -2,8 +2,8 @@ services:
 - postgresql
 before_script:
 # - psql -c 'create database tecservice;' -U postgres
- - psql -U postgres  -f crowdments/script/0_Database.sql
- - psql -U postgres -d crowdments/script/1_Tables.sql
+ - psql -U postgres  -f /script/0_Database.sql
+ - psql -U postgres -d /script/1_Tables.sql
  - cd crowdments/src/crowdments/
  - ls
 language: java
