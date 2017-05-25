@@ -14,7 +14,7 @@
     <class>br.edu.utfpr.r4c.crowdments.entities.Anwserprofilequestion</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/r4c"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://13.90.103.245:5432/r4c"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="postgres"/>

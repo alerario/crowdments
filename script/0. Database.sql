@@ -110,7 +110,7 @@ CREATE TABLE AnwserProfileQuestion(
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT Awnser
-    FOREIGN KEY (awnser)
+    FOREIGN KEY (anwser)
     REFERENCES Anwser(id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION    

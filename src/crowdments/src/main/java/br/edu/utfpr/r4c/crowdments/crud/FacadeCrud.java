@@ -94,7 +94,7 @@ public abstract class FacadeCrud<T> {
             getEntityManager().getTransaction().begin();
 	    return getEntityManager().createNamedQuery(this.entityClass.getSimpleName().toString() +".findAll").getResultList();
         }catch(Exception e){
-        	getEntityManager().getTransaction().rollback();
+            getEntityManager().getTransaction().rollback();
             System.out.println(e.getMessage());
         }
         return null;
