@@ -4,7 +4,7 @@ before_script:
  - psql -U postgres  -f script/0_Database.sql
  - psql -U postgres -d r4c -f script/1_Tables.sql
  - psql -U postgres -d r4c -f script/2_FillTables.sql
- - cd crowdments/src/crowdments/
+ - cd src/crowdments/
  - ls
 language: java
 jdk:
