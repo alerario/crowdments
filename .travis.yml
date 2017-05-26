@@ -12,6 +12,6 @@ jdk:
 script: mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
 deploy:
   provider: boxfuse
-  user: "alerario@gmail"
-  secret: "secret123"
+  user: "4c517afac1b64ac99677c188de9dfcd3"
+  secret: "lAW6mnOC5tDFSvorNaz9bZMSAr0RKFFcObn5OGHlheKCidtxH7O63wmegOq72CvD"
   payload: "war"
