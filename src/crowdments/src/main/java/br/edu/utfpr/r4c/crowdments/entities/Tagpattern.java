@@ -8,16 +8,16 @@ package br.edu.utfpr.r4c.crowdments.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,24 +41,17 @@ public class Tagpattern implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @ManyToMany(mappedBy = "tagpatternCollection")
-    private Collection<Anwser> anwserCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tagpattern")
+    private Collection<AnwserHasTagpattern> anwserHasTagpatternCollection;
 
     public Tagpattern() {
     }
 
     public Tagpattern(Integer id) {
         this.id = id;
-    }
-
-    public Tagpattern(Integer id, String description) {
-        this.id = id;
-        this.description = description;
     }
 
     public Integer getId() {
@@ -78,12 +71,12 @@ public class Tagpattern implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Anwser> getAnwserCollection() {
-        return anwserCollection;
+    public Collection<AnwserHasTagpattern> getAnwserHasTagpatternCollection() {
+        return anwserHasTagpatternCollection;
     }
 
-    public void setAnwserCollection(Collection<Anwser> anwserCollection) {
-        this.anwserCollection = anwserCollection;
+    public void setAnwserHasTagpatternCollection(Collection<AnwserHasTagpattern> anwserHasTagpatternCollection) {
+        this.anwserHasTagpatternCollection = anwserHasTagpatternCollection;
     }
 
     @Override

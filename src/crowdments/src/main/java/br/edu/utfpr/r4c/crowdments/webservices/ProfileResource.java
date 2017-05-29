@@ -28,9 +28,4 @@ public class ProfileResource extends FacadeWebservice<Profile>{
         cr = new ProfileCrud();
         this.setManager(cr);
     }       
-    
-    @Override
-    public List<Profile> getList() throws SQLException, NamingException, NullPointerException{ 
-        return null;
-    }
 }

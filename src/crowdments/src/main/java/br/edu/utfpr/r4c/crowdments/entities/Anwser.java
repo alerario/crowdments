@@ -39,6 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Anwser.findByScore", query = "SELECT a FROM Anwser a WHERE a.score = :score")})
 public class Anwser implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "anwser")
+    private Collection<AnwserHasTagpattern> anwserHasTagpatternCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -141,6 +144,15 @@ public class Anwser implements Serializable {
     @Override
     public String toString() {
         return "br.edu.utfpr.r4c.crowdments.entities.Anwser[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<AnwserHasTagpattern> getAnwserHasTagpatternCollection() {
+        return anwserHasTagpatternCollection;
+    }
+
+    public void setAnwserHasTagpatternCollection(Collection<AnwserHasTagpattern> anwserHasTagpatternCollection) {
+        this.anwserHasTagpatternCollection = anwserHasTagpatternCollection;
     }
     
 }

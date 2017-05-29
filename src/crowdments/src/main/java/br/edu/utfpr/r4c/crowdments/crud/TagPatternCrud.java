@@ -5,8 +5,9 @@
  */
 package br.edu.utfpr.r4c.crowdments.crud;
 
-import br.edu.utfpr.r4c.crowdments.entities.Anwserprofilequestion;
+import br.edu.utfpr.r4c.crowdments.entities.Tagpattern;
 import br.edu.utfpr.r4c.crowdments.util.DefaultParams;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -14,11 +15,11 @@ import javax.persistence.Persistence;
  *
  * @author ricar
  */
-public class AnwProfileCurd extends FacadeCrud<Anwserprofilequestion>{
+public class TagPatternCrud extends FacadeCrud<Tagpattern>{
     private EntityManager em;
     
-    public AnwProfileCurd(){
-        super(Anwserprofilequestion.class);
+    public TagPatternCrud(){
+        super(Tagpattern.class);
     }
 
     @Override
@@ -27,5 +28,15 @@ public class AnwProfileCurd extends FacadeCrud<Anwserprofilequestion>{
             em = Persistence.createEntityManagerFactory(DefaultParams.PU).createEntityManager();
         }
         return em;
+    }
+    
+    public Tagpattern byTag(Integer id) {
+        try {
+            getEntityManager().getTransaction().begin();
+            return (Tagpattern) getEntityManager().createNamedQuery(Tagpattern.class.getSimpleName().toString() +".findById").setParameter("id", id).getSingleResult();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

@@ -5,7 +5,9 @@
  */
 package br.edu.utfpr.r4c.crowdments.util;
 
-import br.edu.utfpr.r4c.crowdments.crud.QuestionaryCrud;
+import br.edu.utfpr.r4c.crowdments.crud.AnwserHasTagpatternCrud;
+import br.edu.utfpr.r4c.crowdments.entities.AnwserHasTagpattern;
+import java.util.List;
 
 /**
  *
@@ -13,7 +15,9 @@ import br.edu.utfpr.r4c.crowdments.crud.QuestionaryCrud;
  */
 public class Home {
     public static void main(String[] args) {
-        QuestionaryCrud qc = new QuestionaryCrud();
-        System.out.println("Quant: "+ qc.getAll().size());
+        AnwserHasTagpatternCrud vwCrud = new AnwserHasTagpatternCrud();
+        List<AnwserHasTagpattern> record = vwCrud.byTag(3);
+        
+        System.out.println(record.get(0).getTagpattern().getDescription());
     }
 }

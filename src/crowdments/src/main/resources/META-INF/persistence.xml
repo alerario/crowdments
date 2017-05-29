@@ -9,12 +9,18 @@
     <class>br.edu.utfpr.r4c.crowdments.entities.Profile</class>
     <class>br.edu.utfpr.r4c.crowdments.entities.Statues</class>
     <class>br.edu.utfpr.r4c.crowdments.entities.Question</class>
-    <class>br.edu.utfpr.r4c.crowdments.entities.Tagpattern</class>
     <class>br.edu.utfpr.r4c.crowdments.entities.Task</class>
     <class>br.edu.utfpr.r4c.crowdments.entities.Anwserprofilequestion</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.VwProfileanwsers</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.VwUsersex</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.VwUserswithanwsersMail</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.AnwserHasTagpattern</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.Tagpattern</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.VwTags</class>
+    <class>br.edu.utfpr.r4c.crowdments.entities.VwAge</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://13.90.103.245:5432/r4c"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/r4c"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="postgres"/>

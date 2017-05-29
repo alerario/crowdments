@@ -27,10 +27,5 @@ public class QuestionResource extends FacadeWebservice<Question>{
         cr = new QuestionCrud();
         this.setManager(cr);
     }   
-
-    @Override
-    public List<Question> getList() throws SQLException, NamingException, NullPointerException{ 
-        return null;
-    }
 }
 

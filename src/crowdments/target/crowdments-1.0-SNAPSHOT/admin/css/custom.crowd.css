@@ -1,0 +1,70 @@
+body{
+    padding: 0% 2vw 0% 2vw;
+    background-color: #f3f3f3;
+}
+#home{
+    height: 100%;
+    min-height: 200px;
+    background-color: green;
+    opacity: 0.7;
+    padding: 3%;
+}
+
+.crowdhead{
+    color: #fff;
+}
+
+.conhecer{
+    opacity: 1;
+    background-color: #113804;
+    border-color: #3fb618;
+}
+.navbar{
+    opacity: 0.7;
+}
+
+.options{
+    padding-bottom: 1%;
+    margin-bottom: 1%;
+}
+
+.inputAw{
+    width: 90%;
+    float: left;
+    margin-right: 1%;
+}
+
+.btAws{
+    width: 4vw;
+    float: left;
+    margin-right: 1%;
+}
+.input_fields_wrap{
+    width: 100%;
+    max-height: 32vh;
+    height: auto;
+    margin-bottom: 4vh;
+}
+
+.enviar{
+    padding-left: 0px; 
+    margin: 0px auto;
+    text-align: center;
+}
+
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.modal-body {
+    position: relative;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .modal-dialog {
+        width: 900px;
+        margin: 30px auto;
+    }
+}

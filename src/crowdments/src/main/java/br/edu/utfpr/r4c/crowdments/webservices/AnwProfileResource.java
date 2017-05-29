@@ -5,31 +5,44 @@
  */
 package br.edu.utfpr.r4c.crowdments.webservices;
 
-import br.edu.utfpr.r4c.crowdments.crud.AnwProfileCurd;
+import br.edu.utfpr.r4c.crowdments.crud.AnwProfileCrud;
+import br.edu.utfpr.r4c.crowdments.crud.VwUsersexCrud;
+import br.edu.utfpr.r4c.crowdments.crud.VwUserswithanwsersMailCrud;
+import br.edu.utfpr.r4c.crowdments.crud.VwprofileAnwsersCrud;
 import br.edu.utfpr.r4c.crowdments.entities.Anwserprofilequestion;
+import br.edu.utfpr.r4c.crowdments.entities.VwProfileanwsers;
+import br.edu.utfpr.r4c.crowdments.entities.VwUsersex;
+import br.edu.utfpr.r4c.crowdments.entities.VwUserswithanwsersMail;
 import java.sql.SQLException;
 import java.util.List;
 import javax.naming.NamingException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-
+import javax.ws.rs.GET;
+import javax.ws.rs.PathParam;
 /**
  *
  * @author ricar
  */
 @Path("/anwser")
 @Produces("application/json")
-public class AnwProfileResource extends FacadeWebservice<Anwserprofilequestion>{
-    private AnwProfileCurd cr;
-                       
-    public AnwProfileResource(){
-        super(Anwserprofilequestion.class);
-        cr = new AnwProfileCurd();
-        this.setManager(cr);
-    }   
+public class AnwProfileResource extends FacadeWebservice<Anwserprofilequestion> {
 
-    @Override
-    public List<Anwserprofilequestion> getList() throws SQLException, NamingException, NullPointerException{ 
-        return null;
+    private AnwProfileCrud cr;
+
+    public AnwProfileResource() {
+        super(Anwserprofilequestion.class);
+        cr = new AnwProfileCrud();
+        this.setManager(cr);
     }
+
+    @GET
+    @Path("byQuestionary/{id}")
+    public List<VwProfileanwsers> getAnwsers(@PathParam("id") int id) {
+        VwprofileAnwsersCrud vwCrud = new VwprofileAnwsersCrud();
+        List<VwProfileanwsers> record = vwCrud.byQuestionary(id);
+        return record;
+    }
+    
+    
 }
