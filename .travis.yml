@@ -10,8 +10,8 @@ language: java
 jdk:
   - oraclejdk8
 script: mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
-deploy:
-  provider: boxfuse
-  user: "alerario@gmail"
-  secret: "secret123"
-  payload: "war"
+#deploy:
+#  provider: boxfuse
+#  user: "user"
+#  secret: "secret"
+#  payload: "war"
