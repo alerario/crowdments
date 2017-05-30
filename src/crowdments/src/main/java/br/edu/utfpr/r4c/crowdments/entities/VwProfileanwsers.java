@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VwProfileanwsers.findAll", query = "SELECT v FROM VwProfileanwsers v")
     , @NamedQuery(name = "VwProfileanwsers.findById", query = "SELECT v FROM VwProfileanwsers v WHERE v.id = :id")
     , @NamedQuery(name = "VwProfileanwsers.findByAnwser", query = "SELECT v FROM VwProfileanwsers v WHERE v.anwser = :anwser")
-    , @NamedQuery(name = "VwProfileanwsers.findByMail", query = "SELECT v FROM VwProfileanwsers v WHERE v.questionary = :questionary")
+    , @NamedQuery(name = "VwProfileanwsers.findByMail", query = "SELECT v FROM VwProfileanwsers v WHERE v.questionary = :questionary AND v.mail = :mail")
     , @NamedQuery(name = "VwProfileanwsers.findByProfile", query = "SELECT v FROM VwProfileanwsers v WHERE v.questionary = :questionary")
     , @NamedQuery(name = "VwProfileanwsers.findByQuestion", query = "SELECT v FROM VwProfileanwsers v WHERE v.question = :question")
     , @NamedQuery(name = "VwProfileanwsers.findByQuestionary", query = "SELECT v FROM VwProfileanwsers v WHERE v.questionary = :questionary")})

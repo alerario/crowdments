@@ -9,6 +9,10 @@ angular.module("Crowd").
                 $scope.qtdTagsCreated = 0;
                 $scope.tags = {};
                 $scope.anwsers = {};
+                $scope.profiles = {};
+                $scope.profileSelected = "";
+                $scope.questionSelected = 1;
+                $scope.awnProfile = {};
 
                 function obterQuestions() {
                     $http.get("../v1/questionary").success(
@@ -29,6 +33,14 @@ angular.module("Crowd").
                     $http.get("../v1/anwser/byQuestionary/" + id).success(
                             function (response) {
                                 $scope.qtdAwTotal = response.length;
+                            }
+                    );
+                }
+                
+                function obterEmails(id) {
+                    $http.get("../v1/questionary/" + id +"/emails").success(
+                            function (response) {
+                                $scope.profiles = response;
                             }
                     );
                 }
@@ -69,6 +81,15 @@ angular.module("Crowd").
                             }
                     );
                 }
+                
+                function obterAwsProfile(id, mail) {
+                    $http.get("../v1/anwser/byQuestionary/" + id +"/"+mail).success(
+                            function (response) {
+                                $scope.awnProfile = response;
+                                console.log(response);
+                            }
+                    );
+                }
 
                 $('#questions').change(function () {
                     $("#infos").hide();
@@ -77,7 +98,18 @@ angular.module("Crowd").
 
                     $("#infos").show();
                 });
+                
+                $('#questionProfile').change(function () {
+                    $scope.questionSelected = $(this).val();
+                    obterEmails($(this).val());
+                });
 
+                $('#profileMail').change(function () {
+                    $scope.profileSelected = $(this).val();
+                    obterAwsProfile($scope.questionSelected, $(this).val());
+
+                    $("#infos").show();
+                });
                 $('#questionTag').change(function () {
                     $("#infos").hide();
                     obterQtdTags();

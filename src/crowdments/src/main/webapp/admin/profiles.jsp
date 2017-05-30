@@ -15,38 +15,29 @@
         <header>
         <jsp:include page="header.jsp"></jsp:include>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="js/controller.responda.js"></script>
     </header>
     <body ng-controller="CrowdController">
         <h1>Perfil</h1>
         <div class="col-lg-12">
-            <select class="form-control options" id="questions" required>
+            <select class="form-control options" id="questionProfile" required>
                 <option>Escolha um questionário válido</option>
                 <option ng-repeat="q in questions" value="{{ q.id}}">{{ q.name }}</option>
             </select>
         </div>
         <div class="col-lg-12">
-            <select class="form-control options" id="questions" required>
+            <select class="form-control options" id="profileMail" required>
                 <option>Escolha um perfil</option>
-                <option ng-repeat="p in profiles" value="{{ p.id}}">{{ p.mail }}</option>
+                <option ng-repeat="p in profiles" value="{{ p.mail }}">{{ p.mail }}</option>
             </select>
         </div>
         
         <div id="infos">
             <div class="row">
-                <h1>Perfis e respostas</h1>
-                <div class="col-lg-3">
-                    Quantidade de perfis: {{qtdProfiles}}
-                </div>
-                <div class="col-lg-3">
-                    Quantidade de respostas totais: {{qtdAwTotal}}
-                </div>
-                <div class="col-lg-3">
-                    Quantidade média de respostas/perfil: {{qtdAwProfiles}}
-                </div>
-                <div class="col-lg-3">
-                    Quantidade de questionários finalizados: {{qtdFinished}}
-                </div>
+                <h1>Respostas de {{profileSelected }}</h1>
+                
+                <ul>
+                    <li ng-repeat="a in awnProfile">{{ a.anwser }}</li>
+                </ul>
             </div>
     </body>
 </html>

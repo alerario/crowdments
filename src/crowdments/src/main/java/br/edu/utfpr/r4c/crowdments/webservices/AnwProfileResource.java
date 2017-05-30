@@ -44,5 +44,12 @@ public class AnwProfileResource extends FacadeWebservice<Anwserprofilequestion> 
         return record;
     }
     
+    @GET
+    @Path("byQuestionary/{id}/{mail}")
+    public List<VwProfileanwsers> getAnwsersByMail(@PathParam("id") int id, @PathParam("mail") String mail) {
+        VwprofileAnwsersCrud vwCrud = new VwprofileAnwsersCrud();
+        List<VwProfileanwsers> record = vwCrud.byProfileMail(mail, id);
+        return record;
+    }
     
 }

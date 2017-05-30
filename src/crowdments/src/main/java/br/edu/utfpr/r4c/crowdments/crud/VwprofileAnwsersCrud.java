@@ -10,6 +10,7 @@ import br.edu.utfpr.r4c.crowdments.util.DefaultParams;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -46,6 +47,21 @@ public class VwprofileAnwsersCrud extends FacadeCrud<VwProfileanwsers>{
             getEntityManager().getTransaction().begin();
             
             return getEntityManager().createNamedQuery(VwProfileanwsers.class.getSimpleName()+".findByProfile").setParameter("questionary", id).getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    
+    public List<VwProfileanwsers> byProfileMail (String mail, Integer id) {
+        try {
+            getEntityManager().getTransaction().begin();
+            Query q = getEntityManager().createNamedQuery(VwProfileanwsers.class.getSimpleName()+".findByMail");
+            q.setParameter("questionary", id);
+            q.setParameter("mail", mail);
+            
+            return q.getResultList();
+                    
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -28,4 +28,14 @@ public class ProfileCrud extends FacadeCrud<Profile>{
         }
         return em;
     }
+    
+    public Profile byMail(String mail) {
+        try {
+            getEntityManager().getTransaction().begin();
+            return (Profile) getEntityManager().createNamedQuery(Profile.class.getSimpleName().toString() +".findByEmail").setParameter("email", mail).getResultList().get(0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
