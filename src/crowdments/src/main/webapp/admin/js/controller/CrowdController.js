@@ -20,7 +20,7 @@ angular.module("Crowd").
                 $scope.projectsDoing = {};
                 $scope.projectsDone = {};
                 $scope.task = {};
-                $scope.taskid = 0;
+                $scope.taskid = 1;
 
                 function obterQuestions() {
                     $http.get("../v1/questionary").success(
@@ -175,6 +175,7 @@ angular.module("Crowd").
                 });
 
                 $(document).on('show.bs.modal', '#editTaskModal', function () {
+                    console.log($scope.taskid);
                     $http.get("../v1/task/" + $scope.taskid).success(
                             function (response) {
                                 $scope.task = response;

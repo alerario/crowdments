@@ -150,7 +150,7 @@
                         <div class="form-group">
                             <label class="control-label" for="projectTask">Questionário</label>
                             <select class="form-control options" id="projectTask" required>
-                                <option>Escolha um projeto válido</option>
+                                <option>Escolha um projeto válido</option>                                
                                 <option ng-repeat="p in projects" value="{{ p.id}}">{{ p.name}}</option>
                             </select>
                         </div>
@@ -195,7 +195,7 @@
                         <div class="form-group">
                             <label class="control-label" for="projectTask">Questionário</label>
                             <select class="form-control options" id="projectTask" required>
-                                <option>Escolha um projeto válido</option>
+                                <option selected value="{{ task.project.id}}">{{ task.project.name}}</option>
                                 <option ng-repeat="p in projects" value="{{ p.id}}">{{ p.name}}</option>
                             </select>
                         </div>
@@ -208,6 +208,7 @@
                             <label class="control-label" for="awTask">Relacionada a resposta</label>
                             <select class="form-control options" id="awTask" required>
                                 <option>Escolha um projeto válido</option>
+                                <option selected value="{{ task.project.id}}">{{ task.project.name}}</option>
                                 <option ng-repeat="a in awnsersUsers" value="{{ a.id}}">{{ a.anwser}}</option>
                             </select>
                         </div>
