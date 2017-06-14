@@ -6,7 +6,6 @@
 package br.edu.utfpr.r4c.crowdments.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,17 +14,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t")
     , @NamedQuery(name = "Task.findById", query = "SELECT t FROM Task t WHERE t.id = :id")
     , @NamedQuery(name = "Task.findByDescription", query = "SELECT t FROM Task t WHERE t.description = :description")
+    , @NamedQuery(name = "Task.findByProject", query = "SELECT t FROM Task t WHERE t.project.id = :project")
+    , @NamedQuery(name = "Task.findByStatues", query = "SELECT t FROM Task t WHERE t.project.id = :project AND t.statues.id = :statues")
     , @NamedQuery(name = "Task.findByDuedate", query = "SELECT t FROM Task t WHERE t.duedate = :duedate")})
 public class Task implements Serializable {
 
@@ -47,21 +45,20 @@ public class Task implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
     @Column(name = "duedate")
     @Temporal(TemporalType.DATE)
     private Date duedate;
-    @ManyToMany(mappedBy = "taskCollection")
-    private Collection<Project> projectCollection;
     @JoinColumn(name = "awnser", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Anwser awnser;
+    @JoinColumn(name = "project", referencedColumnName = "id")
+    @ManyToOne
+    private Project project;
     @JoinColumn(name = "statues", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Statues statues;
 
     public Task() {
@@ -69,11 +66,6 @@ public class Task implements Serializable {
 
     public Task(Integer id) {
         this.id = id;
-    }
-
-    public Task(Integer id, String description) {
-        this.id = id;
-        this.description = description;
     }
 
     public Integer getId() {
@@ -100,21 +92,20 @@ public class Task implements Serializable {
         this.duedate = duedate;
     }
 
-    @XmlTransient
-    public Collection<Project> getProjectCollection() {
-        return projectCollection;
-    }
-
-    public void setProjectCollection(Collection<Project> projectCollection) {
-        this.projectCollection = projectCollection;
-    }
-
     public Anwser getAwnser() {
         return awnser;
     }
 
     public void setAwnser(Anwser awnser) {
         this.awnser = awnser;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Statues getStatues() {

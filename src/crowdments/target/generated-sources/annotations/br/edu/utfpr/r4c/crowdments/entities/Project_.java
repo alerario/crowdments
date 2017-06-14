@@ -1,18 +1,15 @@
 package br.edu.utfpr.r4c.crowdments.entities;
 
 import br.edu.utfpr.r4c.crowdments.entities.Questionary;
-import br.edu.utfpr.r4c.crowdments.entities.Task;
 import java.util.Date;
 import javax.annotation.Generated;
-import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-05-28T23:12:43")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-06-12T20:25:19")
 @StaticMetamodel(Project.class)
 public class Project_ { 
 
-    public static volatile CollectionAttribute<Project, Task> taskCollection;
     public static volatile SingularAttribute<Project, Date> ends;
     public static volatile SingularAttribute<Project, String> name;
     public static volatile SingularAttribute<Project, Boolean> active;

@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.utfpr.r4c.crowdments.webservices;
 
 import br.edu.utfpr.r4c.crowdments.crud.AnwProfileCrud;
-import br.edu.utfpr.r4c.crowdments.crud.VwUsersexCrud;
-import br.edu.utfpr.r4c.crowdments.crud.VwUserswithanwsersMailCrud;
 import br.edu.utfpr.r4c.crowdments.crud.VwprofileAnwsersCrud;
 import br.edu.utfpr.r4c.crowdments.entities.Anwserprofilequestion;
 import br.edu.utfpr.r4c.crowdments.entities.VwProfileanwsers;
-import br.edu.utfpr.r4c.crowdments.entities.VwUsersex;
-import br.edu.utfpr.r4c.crowdments.entities.VwUserswithanwsersMail;
-import java.sql.SQLException;
 import java.util.List;
-import javax.naming.NamingException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;

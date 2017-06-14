@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Typeprofile.findByLevel", query = "SELECT t FROM Typeprofile t WHERE t.level = :level")})
 public class Typeprofile implements Serializable {
 
+    @Column(name = "active")
+    private Boolean active;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -46,10 +49,6 @@ public class Typeprofile implements Serializable {
     @Size(max = 45)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "active")
-    private boolean active;
     @Size(max = 45)
     @Column(name = "description")
     private String description;
@@ -86,13 +85,6 @@ public class Typeprofile implements Serializable {
         this.name = name;
     }
 
-    public boolean getActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 
     public String getDescription() {
         return description;
@@ -142,6 +134,14 @@ public class Typeprofile implements Serializable {
     @Override
     public String toString() {
         return "br.edu.utfpr.r4c.crowdments.entities.Typeprofile[ id=" + id + " ]";
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
     
 }

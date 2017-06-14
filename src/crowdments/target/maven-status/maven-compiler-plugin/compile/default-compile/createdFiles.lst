@@ -1,15 +1,19 @@
 br\edu\utfpr\r4c\crowdments\entities\Anwserprofilequestion_.class
 br\edu\utfpr\r4c\crowdments\webservices\TagPatternResource.class
+br\edu\utfpr\r4c\crowdments\webservices\ProjectResource.class
 br\edu\utfpr\r4c\crowdments\entities\Typeprofile_.class
 br\edu\utfpr\r4c\crowdments\entities\Anwser.class
 br\edu\utfpr\r4c\crowdments\webservices\QuestionResource.class
 br\edu\utfpr\r4c\crowdments\webservices\ReturnStatus.class
 br\edu\utfpr\r4c\crowdments\entities\Project.class
 br\edu\utfpr\r4c\crowdments\entities\VwProfileanwsers_.class
+br\edu\utfpr\r4c\crowdments\webservices\TypeProfileResource.class
 br\edu\utfpr\r4c\crowdments\crud\QuestionCrud.class
 br\edu\utfpr\r4c\crowdments\webservices\ProfileResource.class
 br\edu\utfpr\r4c\crowdments\util\Home.class
 br\edu\utfpr\r4c\crowdments\crud\VwUsersexCrud.class
+br\edu\utfpr\r4c\crowdments\crud\ProjectCrud.class
+br\edu\utfpr\r4c\crowdments\crud\StatuesCrud.class
 br\edu\utfpr\r4c\crowdments\entities\Questionary.class
 br\edu\utfpr\r4c\crowdments\entities\Tagpattern_.class
 br\edu\utfpr\r4c\crowdments\entities\VwAge_.class
@@ -17,6 +21,7 @@ br\edu\utfpr\r4c\crowdments\crud\VwUserswithanwsersMailCrud.class
 br\edu\utfpr\r4c\crowdments\entities\VwAge.class
 br\edu\utfpr\r4c\crowdments\entities\VwTags_.class
 br\edu\utfpr\r4c\crowdments\entities\Question.class
+br\edu\utfpr\r4c\crowdments\webservices\TaskResource.class
 br\edu\utfpr\r4c\crowdments\entities\Project_.class
 br\edu\utfpr\r4c\crowdments\webservices\FacadeWebservice.class
 br\edu\utfpr\r4c\crowdments\webservices\QuestionaryResource.class
@@ -34,6 +39,7 @@ br\edu\utfpr\r4c\crowdments\crud\AnwProfileCrud.class
 br\edu\utfpr\r4c\crowdments\webservices\AnwProfileResource.class
 br\edu\utfpr\r4c\crowdments\entities\VwUserswithanwsersMail_.class
 br\edu\utfpr\r4c\crowdments\entities\Statues_.class
+br\edu\utfpr\r4c\crowdments\crud\TypeprofileCrud.class
 br\edu\utfpr\r4c\crowdments\crud\VwAgeCrud.class
 br\edu\utfpr\r4c\crowdments\entities\Questionary_.class
 br\edu\utfpr\r4c\crowdments\entities\Statues.class
@@ -50,5 +56,6 @@ br\edu\utfpr\r4c\crowdments\entities\AnwserHasTagpattern.class
 br\edu\utfpr\r4c\crowdments\entities\Anwser_.class
 br\edu\utfpr\r4c\crowdments\util\DefaultParams.class
 br\edu\utfpr\r4c\crowdments\crud\AnwserHasTagpatternCrud.class
+br\edu\utfpr\r4c\crowdments\crud\TaskCrud.class
 br\edu\utfpr\r4c\crowdments\entities\VwTags.class
 br\edu\utfpr\r4c\crowdments\entities\VwUserswithanwsersMail.class

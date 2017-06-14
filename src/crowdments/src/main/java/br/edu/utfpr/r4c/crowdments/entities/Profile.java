@@ -45,9 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Profile.findByPosition", query = "SELECT p FROM Profile p WHERE p.position = :position")})
 public class Profile implements Serializable {
 
-    @Basic(optional = false)
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
     private Collection<Anwserprofilequestion> anwserprofilequestionCollection;
@@ -232,11 +231,11 @@ public class Profile implements Serializable {
         this.anwserprofilequestionCollection = anwserprofilequestionCollection;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
     

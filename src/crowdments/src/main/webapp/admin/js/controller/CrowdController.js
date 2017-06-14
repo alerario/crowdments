@@ -13,6 +13,12 @@ angular.module("Crowd").
                 $scope.profileSelected = "";
                 $scope.questionSelected = 1;
                 $scope.awnProfile = {};
+                $scope.projects = {};
+                $scope.project = {};
+                $scope.awnsersUsers = {};
+                $scope.projectsTodo = {};
+                $scope.projectsDoing = {};
+                $scope.projectsDone = {};
 
                 function obterQuestions() {
                     $http.get("../v1/questionary").success(
@@ -21,7 +27,17 @@ angular.module("Crowd").
                             }
                     );
                 }
+                
+                function obterProjects() {
+                    $http.get("../v1/project").success(
+                            function (response) {
+                                $scope.projects = response;
+                            }
+                    );
+                }
+                
                 obterQuestions();
+                obterProjects();
 
                 //http://localhost:8084/crowdments/v1/questionary/1/emails
 
@@ -33,6 +49,14 @@ angular.module("Crowd").
                     $http.get("../v1/anwser/byQuestionary/" + id).success(
                             function (response) {
                                 $scope.qtdAwTotal = response.length;
+                            }
+                    );
+                }
+                
+                function obterRespostas(id) {
+                    $http.get("../v1/anwser/byQuestionary/" + id).success(
+                            function (response) {
+                                $scope.awnsersUsers = response;
                             }
                     );
                 }
@@ -51,6 +75,30 @@ angular.module("Crowd").
                                 $scope.qtdFinished = response.length;
                                 var avg = (parseFloat($scope.qtdAwTotal) / parseFloat($scope.qtdFinished)).toFixed(2);
                                 $scope.qtdAwProfiles = avg;
+                            }
+                    );
+                }
+                
+                function projectsTodo(id) {
+                    $http.get("../v1/project/" + id +"/tasks/todo").success(
+                            function (response) {
+                                $scope.projectsTodo = response;
+                            }
+                    );
+                }
+                
+                function projectsDoing(id) {
+                    $http.get("../v1/project/" + id +"/tasks/doing").success(
+                            function (response) {
+                                $scope.projectsDoing = response;
+                            }
+                    );
+                }
+                
+                function projectsDone(id) {
+                    $http.get("../v1/project/" + id +"/tasks/done").success(
+                            function (response) {
+                                $scope.projectsDone = response;
                             }
                     );
                 }
@@ -90,6 +138,14 @@ angular.module("Crowd").
                             }
                     );
                 }
+                
+                function obterProject(id) {
+                    $http.get("../v1/project/" + id).success(
+                            function (response) {
+                                $scope.project = response;
+                            }
+                    );
+                }
 
                 $('#questions').change(function () {
                     $("#infos").hide();
@@ -102,6 +158,18 @@ angular.module("Crowd").
                 $('#questionProfile').change(function () {
                     $scope.questionSelected = $(this).val();
                     obterEmails($(this).val());
+                });
+                
+                $('#projectTask').change(function () {
+                    obterRespostas($(this).val());
+                    
+                });
+                
+                $('#projectSelect').change(function () {
+                    $("#infos").show();
+                    projectsTodo($(this).val());
+                    projectsDoing($(this).val());
+                    projectsDone($(this).val());
                 });
 
                 $('#profileMail').change(function () {
@@ -147,5 +215,8 @@ angular.module("Crowd").
                     console.log('Value: ' +$tag);
                 });
 
+                $('#projectSelect').change(function () {
+                    obterProject($(this).val());
+                });
                 //http://localhost:8084/crowdments/v1/tag/tags
             }]);

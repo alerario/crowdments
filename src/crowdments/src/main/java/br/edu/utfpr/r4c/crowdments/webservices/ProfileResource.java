@@ -7,9 +7,6 @@ package br.edu.utfpr.r4c.crowdments.webservices;
 
 import br.edu.utfpr.r4c.crowdments.crud.ProfileCrud;
 import br.edu.utfpr.r4c.crowdments.entities.Profile;
-import java.sql.SQLException;
-import java.util.List;
-import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
