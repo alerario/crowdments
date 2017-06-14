@@ -19,6 +19,8 @@ angular.module("Crowd").
                 $scope.projectsTodo = {};
                 $scope.projectsDoing = {};
                 $scope.projectsDone = {};
+                $scope.task = {};
+                $scope.taskid = 0;
 
                 function obterQuestions() {
                     $http.get("../v1/questionary").success(
@@ -27,7 +29,7 @@ angular.module("Crowd").
                             }
                     );
                 }
-                
+
                 function obterProjects() {
                     $http.get("../v1/project").success(
                             function (response) {
@@ -35,7 +37,7 @@ angular.module("Crowd").
                             }
                     );
                 }
-                
+
                 obterQuestions();
                 obterProjects();
 
@@ -52,7 +54,7 @@ angular.module("Crowd").
                             }
                     );
                 }
-                
+
                 function obterRespostas(id) {
                     $http.get("../v1/anwser/byQuestionary/" + id).success(
                             function (response) {
@@ -60,9 +62,9 @@ angular.module("Crowd").
                             }
                     );
                 }
-                
+
                 function obterEmails(id) {
-                    $http.get("../v1/questionary/" + id +"/emails").success(
+                    $http.get("../v1/questionary/" + id + "/emails").success(
                             function (response) {
                                 $scope.profiles = response;
                             }
@@ -78,25 +80,25 @@ angular.module("Crowd").
                             }
                     );
                 }
-                
+
                 function projectsTodo(id) {
-                    $http.get("../v1/project/" + id +"/tasks/todo").success(
+                    $http.get("../v1/project/" + id + "/tasks/todo").success(
                             function (response) {
                                 $scope.projectsTodo = response;
                             }
                     );
                 }
-                
+
                 function projectsDoing(id) {
-                    $http.get("../v1/project/" + id +"/tasks/doing").success(
+                    $http.get("../v1/project/" + id + "/tasks/doing").success(
                             function (response) {
                                 $scope.projectsDoing = response;
                             }
                     );
                 }
-                
+
                 function projectsDone(id) {
-                    $http.get("../v1/project/" + id +"/tasks/done").success(
+                    $http.get("../v1/project/" + id + "/tasks/done").success(
                             function (response) {
                                 $scope.projectsDone = response;
                             }
@@ -129,16 +131,16 @@ angular.module("Crowd").
                             }
                     );
                 }
-                
+
                 function obterAwsProfile(id, mail) {
-                    $http.get("../v1/anwser/byQuestionary/" + id +"/"+mail).success(
+                    $http.get("../v1/anwser/byQuestionary/" + id + "/" + mail).success(
                             function (response) {
                                 $scope.awnProfile = response;
                                 console.log(response);
                             }
                     );
                 }
-                
+
                 function obterProject(id) {
                     $http.get("../v1/project/" + id).success(
                             function (response) {
@@ -154,22 +156,34 @@ angular.module("Crowd").
 
                     $("#infos").show();
                 });
-                
+
                 $('#questionProfile').change(function () {
                     $scope.questionSelected = $(this).val();
                     obterEmails($(this).val());
                 });
-                
+
                 $('#projectTask').change(function () {
                     obterRespostas($(this).val());
-                    
+
                 });
-                
+
                 $('#projectSelect').change(function () {
                     $("#infos").show();
                     projectsTodo($(this).val());
                     projectsDoing($(this).val());
                     projectsDone($(this).val());
+                });
+
+                $(document).on('show.bs.modal', '#editTaskModal', function () {
+                    $http.get("../v1/task/" + $scope.taskid).success(
+                            function (response) {
+                                $scope.task = response;
+                            }
+                    );
+                });
+                
+                $(document).on('click', '#verMais', function () {
+                    $scope.taskid = $(this).val();
                 });
 
                 $('#profileMail').change(function () {
@@ -207,12 +221,12 @@ angular.module("Crowd").
                                 });
                     });
                 });
-                
-                $('.tagEx').click( function () {
+
+                $('.tagEx').click(function () {
                     alert('');
                     $tag = $('.tagEx').val();
-                    
-                    console.log('Value: ' +$tag);
+
+                    console.log('Value: ' + $tag);
                 });
 
                 $('#projectSelect').change(function () {

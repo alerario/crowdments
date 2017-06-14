@@ -46,6 +46,10 @@
                         <p>Resposta relacionada: {{ p.awnser.anwser}}</p>
                         <hr>    
                         <p>Prazo: {{ p.duedate}}</p>
+                        <hr>
+                        <div class="col-lg-3">
+                            <button value="{{p.id}}" id="verMais" class="btn btn-primary verMaisBtn" data-toggle="modal" data-target="#editTaskModal">Ver mais</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,12 +63,16 @@
                         <p>Resposta relacionada: {{ p.awnser.anwser}}</p>
                         <hr>    
                         <p>Prazo: {{ p.duedate}}</p>
+                        <hr>
+                        <div class="col-lg-3">
+                            <button value="{{p.id}}" id="verMais" class="btn btn-primary" data-toggle="modal" data-target="#editTaskModal">Ver mais</button>
+                        </div>
                     </div>
                 </div>                
             </div>
             <div class="col-lg-4">
                 <h1>Feito</h1>
-                <div class="panel panel-success" ng-repeat="p in projectsDoing" value="{{ p.id}}">
+                <div class="panel panel-success" ng-repeat="p in projectsDone">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ p.description}}</h3>
                     </div>
@@ -72,6 +80,10 @@
                         <p>Resposta relacionada: {{ p.awnser.anwser}}</p>
                         <hr>    
                         <p>Prazo: {{ p.duedate}}</p>
+                        <hr>
+                        <div class="col-lg-3">
+                            <button value="{{p.id}}" id="verMais" class="btn btn-primary" data-toggle="modal" data-target="#editTaskModal">Ver mais</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +140,6 @@
         <!-- Modal -->
         <div class="modal fade" id="addTaskModal" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
@@ -146,6 +157,51 @@
                         <div class="form-group">
                             <label class="control-label" for="descriptionTask">Descrição da Tarefa</label>
                             <input class="form-control" id="descriptionTask" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="awTask">Relacionada a resposta</label>
+                            <select class="form-control options" id="awTask" required>
+                                <option>Escolha um projeto válido</option>
+                                <option ng-repeat="a in awnsersUsers" value="{{ a.id}}">{{ a.anwser}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="startProj">Data de Termino</label>
+                            <input class="form-control" id="duedate" type="date"/>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sucess" data-dismiss="modal">Salvar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="editTaskModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Editar tarefa</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label" for="projectTask">Questionário</label>
+                            <select class="form-control options" id="projectTask" required>
+                                <option>Escolha um projeto válido</option>
+                                <option ng-repeat="p in projects" value="{{ p.id}}">{{ p.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="descriptionTask">Descrição da Tarefa</label>
+                            <input class="form-control" id="descriptionTask" type="text" value ='{{ task.description}}'>
                         </div>
 
                         <div class="form-group">
